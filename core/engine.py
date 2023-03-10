@@ -35,8 +35,9 @@ class BaseEngine(ABC):
         pass
 
     def run(self, symbols) -> Any:
+        headers = { 'Referer':"http://finance.sina.com.cn"}
         uri = self.convert_format(symbols)
-        data = requests.get(uri)
+        data = requests.get(uri, params=None, headers=headers)
         ticks = self.parser(data)
         return ticks
 
